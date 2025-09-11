@@ -85,7 +85,8 @@ h2 {
 }
 
 .revealed-bg {
-  background: linear-gradient(135deg, #e6ffe6, #fffce0);
+  background: linear-gradient(135deg, #ffe6f0, #fff0f5, #ffe0eb);
+  transition: background 1s ease-in-out;
 }
 
 @media (max-width: 480px) {
