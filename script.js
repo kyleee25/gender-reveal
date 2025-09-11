@@ -75,8 +75,10 @@ envelopeBtn.addEventListener("click", async () => {
 });
 
 async function launchReveal() {
-  revealMessage.innerHTML = "🎉 Congratulations Leri and Zaldad!<br>It's a girl! ❤️";
   countdown.textContent = "";
+
+  // Show congratulations message
+  revealMessage.innerHTML = "🎉 Congratulations Mommy Yhanie and Zaldad! <br><br>";
 
   try {
     await bgMusic.play();
@@ -84,17 +86,36 @@ async function launchReveal() {
     console.warn("Music autoplay blocked:", e);
   }
 
+  // Wait before typing starts
+  await delay(2000);
+
+  // Typing effect for "It's a ....."
+  const typingText = "It's a .....";
+  let currentText = "";
+  for (let i = 0; i < typingText.length; i++) {
+    currentText += typingText[i];
+    revealMessage.innerHTML = "🎉 Congratulations Mommy Yhanie and Zaldad! <br><br>" + currentText;
+    await delay(300); // typing speed
+  }
+
+  // Wait before showing "GIRL!"
+  await delay(1000);
+
+  // Display "GIRL!", confetti, and changing of background color to pink
   document.body.classList.add("revealed-bg");
+  revealMessage.innerHTML += `<br><br><strong style="color:#e63946; font-size: 36px;">GIRL! ❤️</strong>`;
   fireConfetti();
 }
+
+
 
 function fireConfetti() {
   const duration = 5 * 1000;
   const end = Date.now() + duration;
 
   (function frame() {
-    confetti({ particleCount: 5, angle: 60, spread: 70, origin: { x: 0 } });
-    confetti({ particleCount: 5, angle: 120, spread: 70, origin: { x: 1 } });
+    confetti({ particleCount: 10, angle: 60, spread: 90, origin: { x: 0 } });
+    confetti({ particleCount: 10, angle: 120, spread: 90, origin: { x: 1 } });
     if (Date.now() < end) requestAnimationFrame(frame);
   })();
 }
